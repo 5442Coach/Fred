@@ -36,7 +36,7 @@ public class  AutonomousCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	While (Robot.encoders.quadratureEncoderLeft() < 10)
+    	while (Robot.encoders.quadratureEncoderLeft.get() < 10)
     	{
     		
     	}
