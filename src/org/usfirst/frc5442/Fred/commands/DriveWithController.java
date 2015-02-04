@@ -38,7 +38,18 @@ public class  DriveWithController extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveTrain.tankDrive(OI.joystickLeft.getY(), OI.joystickRight.getY());
-    	Robot.driveTrain.tankDrive(OI.xboxController.getRawAxis(1), OI.xboxController.getRawAxis(5));
+    	//*if(OI.joystickRight.getY()>0.1 || OI.joystickRight.getY()<-0.1)
+    	//{
+    		//Robot.driveTrain.tankDrive(OI.joystickRight.getY(), OI.joystickRight.getY());
+    	//} else if(OI.joystickRight.getZ()>0.1 || OI.joystickRight.getZ()<-0.1)
+    	//{
+    		//Robot.driveTrain.tankDrive(OI.joystickRight.getZ(), -1 * OI.joystickRight.getZ());
+    	//}
+    	
+    	
+    	//Robot.driveTrain.tankDrive(OI.xboxController.getRawAxis(5), OI.xboxController.getRawAxis(1));
+    	//Robot.driveTrain.tankDrive(OI.joystickRight.getY(), OI.joystickRight.getTwist());
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
