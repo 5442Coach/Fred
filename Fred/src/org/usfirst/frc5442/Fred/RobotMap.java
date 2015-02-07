@@ -62,8 +62,8 @@ public class RobotMap {
         pneumaticsCompressor = new Compressor(0);
         
         
-        Warning, the two modules in robot builder are different!
-manipulatorCylinder = new DoubleSolenoid(0, 0, 1);      
+        
+        manipulatorCylinder = new DoubleSolenoid(0, 0, 1);      
         LiveWindow.addActuator("Manipulator", "Cylinder", manipulatorCylinder);
         
         encoderencoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
