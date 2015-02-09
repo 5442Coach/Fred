@@ -49,14 +49,6 @@ public class DriveTrain extends Subsystem {
     {
     	robotDrive.tankDrive(speed, speed);
     }
-    public void turnleft(double speed)
-    {
-    	robotDrive.tankDrive(speed, -speed);
-    }
-    public void turnRight(double speed)
-    {
-    	robotDrive.tankDrive(-speed, speed);
-    }
     public void drive(double magnitude, double curve) {
         robotDrive.drive(magnitude, curve);
     }
