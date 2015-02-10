@@ -11,7 +11,6 @@
 
 package org.usfirst.frc5442.Fred.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc5442.Fred.Robot;
@@ -19,7 +18,7 @@ import org.usfirst.frc5442.Fred.Robot;
 /**
  *
  */
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
 public class  AutonomousCommand extends Command {
 
     public AutonomousCommand() {
@@ -37,7 +36,8 @@ public class  AutonomousCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while (Robot.encoders.encoderLeft.getDistance() < 10)
+    	
+    	while (Robot.encoders.encoderLeft.getDistance() < 2)
     	{
     		Robot.driveTrain.driveStraight(.5);
     	}

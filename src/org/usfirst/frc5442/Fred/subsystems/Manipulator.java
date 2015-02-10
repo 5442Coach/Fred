@@ -4,12 +4,7 @@ import org.usfirst.frc5442.Fred.RobotMap;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
-/**
- * The Team 4478 Manipulator subsystem implements the robot manipulator 
- * mechanism control methods
- * 
- * @author Temporo Materia Oscura
- */
+
 public class Manipulator extends Subsystem {
 
     DoubleSolenoid cylinder = RobotMap.manipulatorCylinder;

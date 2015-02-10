@@ -5,6 +5,11 @@ import org.usfirst.frc5442.Fred.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/*
+ * Command to move the winch based on joystick2 trim value. Command will run for the time
+ * need to execute or until another command which requires one or more of the 
+ * same subsystems is scheduled to run.
+*/
 public class winchMove extends Command {
 	public winchMove() {
         // Use requires() here to declare subsystem dependencies
@@ -21,7 +26,7 @@ public class winchMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.winch.winchController.set(OI.joystickRight.getRawAxis(3));
+    	Robot.winch.winchController.set(OI.joystick2.getRawAxis(3));
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -16,8 +16,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc5442.Fred.OI;
 import org.usfirst.frc5442.Fred.Robot;
 
-/**
- *
+/*
+ * *Command to move the drive train subsystem based on controller values. Command will run for the time
+ * need to execute or until another command which requires one or more of the 
+ * same subsystems is scheduled to run.
  */
 public class  DriveWithController extends Command {
 
@@ -37,7 +39,8 @@ public class  DriveWithController extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.tankDrive(OI.joystickLeft.getY(), OI.joystickRight.getY());
+    	Robot.driveTrain.tankDrive(OI.joystick2.getY(), OI.joystick1.getY());
+    	
     	//*if(OI.joystickRight.getY()>0.1 || OI.joystickRight.getY()<-0.1)
     	//{
     		//Robot.driveTrain.tankDrive(OI.joystickRight.getY(), OI.joystickRight.getY());
