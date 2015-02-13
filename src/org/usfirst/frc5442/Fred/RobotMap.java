@@ -14,6 +14,7 @@ package org.usfirst.frc5442.Fred;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
+import edu.wpi.first.wpilibj.hal.CanTalonSRX;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import java.util.Vector;
@@ -31,6 +32,7 @@ public class RobotMap {
     public static SpeedController driveTrainTalonController3;
     public static SpeedController driveTrainTalonController4;
     public static SpeedController winchController;
+    public static CanTalonSRX m_winchController;
     public static RobotDrive driveTrainRobotDrive;
     public static Compressor pneumaticsCompressor;
     public static DoubleSolenoid manipulatorCylinder;
@@ -57,6 +59,8 @@ public class RobotMap {
         driveTrainRobotDrive.setExpiration(0.1);
         driveTrainRobotDrive.setSensitivity(0.5);
         driveTrainRobotDrive.setMaxOutput(1.0);
+        
+        m_winchController = new CanTalonSRX(1);
 
         pneumaticsCompressor = new Compressor(0);
         

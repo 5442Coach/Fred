@@ -5,11 +5,12 @@ import org.usfirst.frc5442.Fred.commands.*;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.hal.CanTalonSRX;
 
 
 
 public class Winch extends Subsystem {
-	public SpeedController winchController = RobotMap.winchController;
+	public CanTalonSRX m_winchController = RobotMap.m_winchController;
 
 	
 	 public void initDefaultCommand() {
@@ -17,9 +18,9 @@ public class Winch extends Subsystem {
 		 
 	 }
 	    	
-	    public void move (double speed)
-	    	    {
-	    	    	winchController.set(speed);
-	    	    }  
+	 public void move (double speed)
+	   {
+	    	m_winchController.Set(speed);;
+	   }  
 
 }
