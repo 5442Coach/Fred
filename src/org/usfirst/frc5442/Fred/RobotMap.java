@@ -64,12 +64,12 @@ public class RobotMap {
         manipulatorCylinder = new DoubleSolenoid(0, 0, 1);      
         LiveWindow.addActuator("Manipulator", "Cylinder", manipulatorCylinder);
         
-        EncoderLeft = new Encoder(0, 1, false, EncodingType.k4X);
+        EncoderLeft = new Encoder(1, 2, false, EncodingType.k4X);
         LiveWindow.addSensor("Encoders", "Quadrature Encoder Left", EncoderLeft);
         EncoderLeft.setSamplesToAverage(5);
         EncoderLeft.setDistancePerPulse(1.0/360);
         EncoderLeft.setPIDSourceParameter(PIDSourceParameter.kDistance);
-        EncoderRight = new Encoder(2, 3, false, EncodingType.k4X);
+        EncoderRight = new Encoder(3, 4, false, EncodingType.k4X);
         LiveWindow.addSensor("Encoders", "Quadrature EncoderRight", EncoderRight);
         EncoderRight.setSamplesToAverage(5);
         EncoderRight.setDistancePerPulse(1.0/360);

@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         // instantiate the command used for the autonomous period
-        autonomousCommand = new AutonomousCommand();
+        autonomousCommand = new DriveIntoAutoZone();
     }
 
     /**
@@ -78,6 +78,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	Robot.encoders.encoderLeft.reset();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -90,6 +91,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
+    	Robot.encoders.encoderLeft.reset();
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
