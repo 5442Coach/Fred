@@ -20,7 +20,7 @@ public class Winch extends Subsystem {
 	    	
 	 public void move (double speed)
 	   {
-	    	m_winchController.Set(speed);;
+	    	m_winchController.Set(speed);
 	   }  
 
 }

@@ -31,7 +31,6 @@ public class RobotMap {
     public static SpeedController driveTrainTalonController2;
     public static SpeedController driveTrainTalonController3;
     public static SpeedController driveTrainTalonController4;
-    public static SpeedController winchController;
     public static CanTalonSRX m_winchController;
     public static RobotDrive driveTrainRobotDrive;
     public static Compressor pneumaticsCompressor;

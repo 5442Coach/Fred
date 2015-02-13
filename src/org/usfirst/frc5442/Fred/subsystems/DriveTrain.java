@@ -15,14 +15,15 @@ import org.usfirst.frc5442.Fred.*;
 import org.usfirst.frc5442.Fred.commands.DriveWithController;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
  *
  */
-public class DriveTrain extends Subsystem {
-    SpeedController talonController1 = RobotMap.driveTrainTalonController1;
+public class DriveTrain extends PIDSubsystem {
+	SpeedController talonController1 = RobotMap.driveTrainTalonController1;
     SpeedController talonController2 = RobotMap.driveTrainTalonController2;
     SpeedController talonController3 = RobotMap.driveTrainTalonController3;
     SpeedController talonController4 = RobotMap.driveTrainTalonController4;
@@ -31,6 +32,9 @@ public class DriveTrain extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    public DriveTrain() {
+		super("DriveTrain", 2.0, 0, 0);
+	}
 
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithController());
@@ -44,6 +48,16 @@ public class DriveTrain extends Subsystem {
 	}
 	public void driveStraight(double speed) {
 		robotDrive.tankDrive(speed, speed);
+	}
+	@Override
+	protected double returnPIDInput() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	protected void usePIDOutput(double output) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
