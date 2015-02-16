@@ -2,7 +2,9 @@ package org.usfirst.frc5442.Fred.commands;
 
 import org.usfirst.frc5442.Fred.OI;
 import org.usfirst.frc5442.Fred.Robot;
+import org.usfirst.frc5442.Fred.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 
 /*
@@ -25,6 +27,7 @@ public class winchMove extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.winch.move(OI.joystick2.getRawAxis(3));
+    	System.out.println("Pot: " + CANTalon.FeedbackDevice.AnalogPot.value);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class DriveTrain extends PIDSubsystem {
+public class DriveTrain extends Subsystem {
 	SpeedController talonController1 = RobotMap.driveTrainTalonController1;
     SpeedController talonController2 = RobotMap.driveTrainTalonController2;
     SpeedController talonController3 = RobotMap.driveTrainTalonController3;
@@ -32,9 +32,9 @@ public class DriveTrain extends PIDSubsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    public DriveTrain() {
-		super("DriveTrain", 2.0, 0, 0);
-	}
+    //public DriveTrain() {
+		//super("DriveTrain", 2.0, 0, 0);
+	//}
 
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithController());
@@ -49,7 +49,7 @@ public class DriveTrain extends PIDSubsystem {
 	public void driveStraight(double speed) {
 		robotDrive.tankDrive(speed, speed);
 	}
-	@Override
+	/*@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -58,7 +58,7 @@ public class DriveTrain extends PIDSubsystem {
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 	
 }
 

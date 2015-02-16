@@ -10,17 +10,16 @@ import edu.wpi.first.wpilibj.hal.CanTalonSRX;
 
 
 public class Winch extends Subsystem {
-	public CanTalonSRX m_winchController = RobotMap.m_winchController;
+	public CANTalon m_winchController = RobotMap.m_winchController;
 
 	
 	 public void initDefaultCommand() {
 		 setDefaultCommand(new winchMove());
-		 
 	 }
 	    	
 	 public void move (double speed)
 	   {
-	    	m_winchController.Set(speed);
+	    	m_winchController.set(speed);
 	   }  
 
 }

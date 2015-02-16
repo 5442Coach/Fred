@@ -104,8 +104,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        System.out.println("Winch Current: " + RobotMap.m_winchController.getOutputCurrent());
     }
-
     /**
      * This function is called periodically during test mode
      */

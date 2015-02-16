@@ -62,12 +62,12 @@ public class OI {
 
     public OI() {
 
-        xboxController = new Joystick(2);
+        //xboxController = new Joystick(2);
         
-        xboxRightBumperOut = new JoystickButton(xboxController, 6);
-        xboxRightBumperOut.whenReleased(new CylinderOut());
-        xboxRightBumperIn = new JoystickButton(xboxController, 6);
-        xboxRightBumperIn.whenPressed(new CylinderIn());
+        //xboxRightBumperOut = new JoystickButton(xboxController, 6);
+        //xboxRightBumperOut.whenReleased(new CylinderOut());
+        //xboxRightBumperIn = new JoystickButton(xboxController, 6);
+        //xboxRightBumperIn.whenPressed(new CylinderIn());
         joystick1 = new Joystick(1);
         
         joystick1TriggerIn = new JoystickButton(joystick1, 1);

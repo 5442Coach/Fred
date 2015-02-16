@@ -36,7 +36,7 @@ public class  DriveIntoAutoZone extends Command {
     	//distance(in)/12.56/1.5
     	while (abs(Robot.encoders.encoderLeft.getDistance()) < 19.5)
     	{
-    		Robot.driveTrain.driveStraight(-.5);
+    		Robot.driveTrain.driveStraight(-.6);
     		System.out.println(Robot.encoders.encoderLeft.getDistance());
     	}
     	System.out.println("Its not a infinite loop");
