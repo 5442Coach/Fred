@@ -36,8 +36,8 @@ public class  DriveWithController extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//Robot.driveTrain.tankDrive(OI.xboxController.getRawAxis(5), OI.xboxController.getRawAxis(1));
-    	Robot.driveTrain.tankDrive(OI.joystick2.getY(), OI.joystick1.getY());
+    	Robot.driveTrain.tankDrive(OI.xboxController.getRawAxis(5), OI.xboxController.getRawAxis(1));
+    	//Robot.driveTrain.tankDrive(OI.joystick2.getY(), OI.joystick1.getY());
     	//System.out.println(Robot.encoders.encoderRight.getDistance());
     	
     	//*if(OI.joystickRight.getY()>0.1 || OI.joystickRight.getY()<-0.1)

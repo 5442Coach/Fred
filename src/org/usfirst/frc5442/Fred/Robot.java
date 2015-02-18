@@ -51,11 +51,11 @@ public class Robot extends IterativeRobot {
         manipulator = new Manipulator();
         encoders = new Encoder();
         winch = new Winch();
-        CameraServer server;
+        /**CameraServer server;
         
         server = CameraServer.getInstance();
         server.setQuality(50);
-        server.startAutomaticCapture("cam0");
+        server.startAutomaticCapture("cam0");**/
         // OI must be constructed after subsystems. If the OI creates Commands 
         //(which it very likely will), subsystems are not guaranteed to be 
         // constructed yet. Thus, their requires() statements may grab null 

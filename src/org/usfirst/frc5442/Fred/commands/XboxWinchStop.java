@@ -2,12 +2,19 @@ package org.usfirst.frc5442.Fred.commands;
 
 import org.usfirst.frc5442.Fred.OI;
 import org.usfirst.frc5442.Fred.Robot;
+import org.usfirst.frc5442.Fred.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class WinchMoveXbox extends Command {
-	public WinchMoveXbox() {
+/*
+ * Command to move the winch based on joystick2 trim value. Command will run for the time
+ * need to execute or until another command which requires one or more of the 
+ * same subsystems is scheduled to run.
+*/
+@SuppressWarnings("unused")
+public class XboxWinchStop extends Command {
+	public XboxWinchStop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 
@@ -20,14 +27,8 @@ public class WinchMoveXbox extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(OI.xboxController.getRawAxis(3) > 0.1){
-    		Robot.winch.move(-1 * (OI.xboxController.getRawAxis(3)));
-    		System.out.println("Working for Right");
-    	}
-    	while(OI.xboxController.getRawAxis(2) > 0.1){	
-    		Robot.winch.move(OI.xboxController.getRawAxis(2));
-    		System.out.println("Working for Left");
-    }
+    	Robot.winch.move(0.0);
+     
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -36,13 +37,13 @@ public class WinchMoveXbox extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.winch.move(0.0);
+       
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.winch.move(0.0);
+    
     }
 
 }
