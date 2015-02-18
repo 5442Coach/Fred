@@ -11,7 +11,9 @@
 
 package org.usfirst.frc5442.Fred.commands;
 
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import org.usfirst.frc5442.Fred.Robot;
 
@@ -19,39 +21,31 @@ import org.usfirst.frc5442.Fred.Robot;
  *
  */
 //@SuppressWarnings("unused")
-public class  DriveIntoAutoZone extends Command {
+public class  DriveIntoAutoZone extends CommandGroup {
+	
+	//PIDController driveTo = new PIDController(0.1,0.001, Robot.Encoder.encoderLeft, Robot.DriveTrain.robotDrive);
 
     public DriveIntoAutoZone() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	addSequential(new DriveStraight());
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.encoders.encoderLeft.reset();
+    	//driveTo.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//distance(in)/12.56/1.5
-    	while (abs(Robot.encoders.encoderLeft.getDistance()) < 19.5)
-    	{
-    		Robot.driveTrain.driveStraight(-.6);
-    		System.out.println(Robot.encoders.encoderLeft.getDistance());
-    	}
-    	System.out.println("Its not a infinite loop");
-    	Robot.driveTrain.driveStraight(0);
+    	
     	
     	
     }
 
-    private double abs(double distance) {
-		if (distance < 0)
-		{
-			distance = distance * -1;
-		}
-		return distance;
-	}
+
 
 	// Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

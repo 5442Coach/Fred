@@ -22,7 +22,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 //@SuppressWarnings("unused")
 public class Pneumatics extends Subsystem {
-
     Compressor compressor = RobotMap.pneumaticsCompressor;
 
     

@@ -56,18 +56,24 @@ public class OI {
     public JoystickButton joystickSideButtonIn;
     public JoystickButton joystickSideButtonOut;
     public static Joystick joystick1;
+    public JoystickButton joystick1Button3;
     public JoystickButton xboxRightBumperIn;
     public JoystickButton xboxRightBumperOut;
+    public JoystickButton xboxAButton;
     public static Joystick xboxController;
 
     public OI() {
 
-        //xboxController = new Joystick(2);
+    	/*
+        xboxController = new Joystick(0);
         
-        //xboxRightBumperOut = new JoystickButton(xboxController, 6);
-        //xboxRightBumperOut.whenReleased(new CylinderOut());
-        //xboxRightBumperIn = new JoystickButton(xboxController, 6);
-        //xboxRightBumperIn.whenPressed(new CylinderIn());
+        xboxRightBumperOut = new JoystickButton(xboxController, 6);
+        xboxRightBumperOut.whenReleased(new CylinderOut());
+        xboxRightBumperIn = new JoystickButton(xboxController, 6);
+        xboxRightBumperIn.whileHeld(new CylinderIn());
+        xboxAButton = new JoystickButton(xboxController, 1);
+        xboxAButton.whileHeld(new winchMove());
+        */
         joystick1 = new Joystick(1);
         
         joystick1TriggerIn = new JoystickButton(joystick1, 1);
@@ -76,6 +82,10 @@ public class OI {
         joystickSideButtonOut.whenReleased(new CylinderOut());
         joystickSideButtonIn = new JoystickButton(joystick1, 2);
         joystickSideButtonIn.whileHeld(new CylinderIn());
+        joystick1Button3 = new JoystickButton(joystick1, 3);
+        joystick1Button3.whileHeld(new Debug());
+       
+        
         joystick2 = new Joystick(0);
         joystick2TriggerIn = new JoystickButton(joystick2, 1);
         joystick2TriggerIn.whileHeld(new winchMove());

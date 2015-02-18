@@ -14,7 +14,7 @@ public class Winch extends Subsystem {
 
 	
 	 public void initDefaultCommand() {
-		 setDefaultCommand(new winchMove());
+		 //setDefaultCommand(new WinchMoveXbox());
 	 }
 	    	
 	 public void move (double speed)

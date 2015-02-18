@@ -11,6 +11,7 @@
 
 package org.usfirst.frc5442.Fred;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -79,6 +80,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
     	Robot.encoders.encoderLeft.reset();
+    	Robot.encoders.encoderRight.reset();
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -104,7 +106,9 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        System.out.println("Winch Current: " + RobotMap.m_winchController.getOutputCurrent());
+        //System.out.println("Winch Current: " + RobotMap.m_winchController.getOutputCurrent());
+        //System.out.println("Winch Value: " + CANTalon.FeedbackDevice.AnalogPot.value);
+        //System.out.println("Pot Value: " + RobotMap.m_winchController.getPosition());
     }
     /**
      * This function is called periodically during test mode

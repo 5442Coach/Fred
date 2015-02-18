@@ -18,7 +18,7 @@ public class  CylinderIn extends Command {
     private Manipulator manipulator = Robot.manipulator;
         
     public CylinderIn() {
-	requires(manipulator);
+    	requires(manipulator);
     }
 
     // Called just before this Command runs the first time

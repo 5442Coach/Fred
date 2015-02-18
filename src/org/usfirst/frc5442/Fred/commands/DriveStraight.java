@@ -12,35 +12,62 @@ package org.usfirst.frc5442.Fred.commands;
 
 
 
-import java.util.function.ToDoubleBiFunction;
-
-import javax.jws.Oneway;
-
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
-
-import org.usfirst.frc5442.Fred.OI;
 import org.usfirst.frc5442.Fred.Robot;
+import org.usfirst.frc5442.Fred.RobotMap;
 
 /**
 * Command to drive straight based off of trim value on joystick
 *
 */
 public class  DriveStraight extends Command {
+	PIDController leftMotor3 = new PIDController(0.1, 0.001, 0.0, RobotMap.EncoderLeft, RobotMap.driveTrainTalonController3);
+	PIDController leftMotor1 = new PIDController(0.1, 0.001, 0.0, RobotMap.EncoderLeft, RobotMap.driveTrainTalonController1);
+	PIDController rightMotor4 = new PIDController(0.1, 0.001, 0.0, RobotMap.EncoderRight, RobotMap.driveTrainTalonController4);
+	PIDController rightMotor2 = new PIDController(0.1, 0.001, 0.0, RobotMap.EncoderRight, RobotMap.driveTrainTalonController2);
+	
 
- public DriveStraight() {
+	public DriveStraight() {
      // Use requires() here to declare subsystem dependencies
      // eg. requires(chassis);
 
-     requires(Robot.driveTrain);
+		
+	 
+
+		requires(Robot.driveTrain);
  	}
 
  	// Called just before this Command runs the first time
  	protected void initialize() {
+		leftMotor3.enable();
+		leftMotor1.enable();
+		rightMotor4.enable();
+		rightMotor2.enable();
+		leftMotor3.setSetpoint(1);
+		leftMotor1.setSetpoint(1);
+		rightMotor2.setSetpoint(-1);
+		rightMotor4.setSetpoint(-1);
  	}
 
  	// Called repeatedly when this Command is scheduled to run
  	protected void execute() {
- 		 Robot.driveTrain.driveStraight(OI.joystick1.getRawAxis(3));
+ 		 //Robot.driveTrain.driveStraight(OI.joystick1.getRawAxis(3));
+    	while (abs(Robot.encoders.encoderLeft.getDistance()) < 5)
+    	{
+    		rightMotor4.setSetpoint(RobotMap.EncoderLeft.getDistance());
+    		rightMotor2.setSetpoint(RobotMap.EncoderLeft.getDistance());
+    		leftMotor3.setSetpoint(2);
+    		leftMotor1.setSetpoint(2);
+    		System.out.println("Left Encoder: " + RobotMap.EncoderLeft.getDistance());
+    		System.out.println("Right Encoder: " + RobotMap.EncoderRight.getDistance());
+    	}
+    	leftMotor3.disable();
+		leftMotor1.disable();
+		rightMotor4.disable();
+		rightMotor2.disable();
+		Robot.driveTrain.driveStraight(0.0);
+
  	 
  	}
 
@@ -51,10 +78,29 @@ public class  DriveStraight extends Command {
 
  	// Called once after isFinished returns true
  	protected void end() {
+ 		leftMotor3.disable();
+		leftMotor1.disable();
+		rightMotor4.disable();
+		rightMotor2.disable();
+ 		Robot.driveTrain.driveStraight(0.0);
  	}
 
  	// Called when another command which requires one or more of the same
  	// subsystems is scheduled to run
  	protected void interrupted() {
+ 		leftMotor3.disable();
+		leftMotor1.disable();
+		rightMotor4.disable();
+		rightMotor2.disable();
+ 		Robot.driveTrain.driveStraight(0.0);
  	}
+ 	
+    private double abs(double distance) {
+		if (distance < 0)
+		{
+			distance = distance * -1;
+		}
+		return distance;
+	}
+
 }

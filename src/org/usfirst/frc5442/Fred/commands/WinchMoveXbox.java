@@ -1,24 +1,16 @@
 package org.usfirst.frc5442.Fred.commands;
 
+import org.usfirst.frc5442.Fred.OI;
 import org.usfirst.frc5442.Fred.Robot;
-import org.usfirst.frc5442.Fred.subsystems.Manipulator;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * Command to extend the manipulator cylinder. Command will run for the time
- * need to execute or until another command which requires one or more of the 
- * same subsystems is scheduled to run.
- * 
- * @author Temporo Materia Oscura
- */
-public class  CylinderOut extends Command {
+public class WinchMoveXbox extends Command {
+	public WinchMoveXbox() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
 
-    private Manipulator manipulator = Robot.manipulator;
-    
-    public CylinderOut() {
-    	requires(manipulator);
+		requires(Robot.winch);
     }
 
     // Called just before this Command runs the first time
@@ -27,7 +19,9 @@ public class  CylinderOut extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        manipulator.cylinder(DoubleSolenoid.Value.kForward);
+    	//Robot.winch.move(-1 * (OI.xboxController.getRawAxis(3)));
+    	//Robot.winch.move(OI.xboxController.getRawAxis(2));
+    	//System.out.println("Pot: " + CANTalon.FeedbackDevice.AnalogPot.value);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,12 +31,14 @@ public class  CylinderOut extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-        manipulator.cylinder(DoubleSolenoid.Value.kOff);
+    	Robot.winch.move(0.0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        manipulator.cylinder(DoubleSolenoid.Value.kOff);
+    	Robot.winch.move(0.0);
     }
+
 }
+
