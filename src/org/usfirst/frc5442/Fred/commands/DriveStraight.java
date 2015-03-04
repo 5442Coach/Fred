@@ -40,14 +40,7 @@ public class  DriveStraight extends Command {
 
  	// Called just before this Command runs the first time
  	protected void initialize() {
-		leftMotor3.enable();
-		leftMotor1.enable();
-		rightMotor4.enable();
-		rightMotor2.enable();
-		leftMotor3.setSetpoint(1);
-		leftMotor1.setSetpoint(1);
-		rightMotor2.setSetpoint(-1);
-		rightMotor4.setSetpoint(-1);
+ 		Robot.encoders.encoderLeft.reset();
  	}
 
  	// Called repeatedly when this Command is scheduled to run
@@ -55,18 +48,9 @@ public class  DriveStraight extends Command {
  		 //Robot.driveTrain.driveStraight(OI.joystick1.getRawAxis(3));
     	while (abs(Robot.encoders.encoderLeft.getDistance()) < 5)
     	{
-    		rightMotor4.setSetpoint(RobotMap.EncoderLeft.getDistance());
-    		rightMotor2.setSetpoint(RobotMap.EncoderLeft.getDistance());
-    		leftMotor3.setSetpoint(2);
-    		leftMotor1.setSetpoint(2);
-    		System.out.println("Left Encoder: " + RobotMap.EncoderLeft.getDistance());
-    		System.out.println("Right Encoder: " + RobotMap.EncoderRight.getDistance());
+    		Robot.driveTrain.driveStraight(.6);
+
     	}
-    	leftMotor3.disable();
-		leftMotor1.disable();
-		rightMotor4.disable();
-		rightMotor2.disable();
-		Robot.driveTrain.driveStraight(0.0);
 
  	 
  	}
@@ -78,20 +62,13 @@ public class  DriveStraight extends Command {
 
  	// Called once after isFinished returns true
  	protected void end() {
- 		leftMotor3.disable();
-		leftMotor1.disable();
-		rightMotor4.disable();
-		rightMotor2.disable();
  		Robot.driveTrain.driveStraight(0.0);
  	}
 
  	// Called when another command which requires one or more of the same
  	// subsystems is scheduled to run
  	protected void interrupted() {
- 		leftMotor3.disable();
-		leftMotor1.disable();
-		rightMotor4.disable();
-		rightMotor2.disable();
+
  		Robot.driveTrain.driveStraight(0.0);
  	}
  	

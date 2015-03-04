@@ -58,7 +58,7 @@ public class OI {
     public static Joystick joystick1;
     public JoystickButton joystick1Button3;
     public JoystickButton xboxRightBumperIn;
-    public JoystickButton xboxRightBumperOut;
+    public JoystickButton xboxLeftBumper;
     public JoystickButton xboxAButton;
     public static Joystick xboxController;
     public JoystickButton xboxYButton;
@@ -68,14 +68,14 @@ public class OI {
     	
         xboxController = new Joystick(0);
         
-        xboxRightBumperOut = new JoystickButton(xboxController, 6);
-        xboxRightBumperOut.whenReleased(new CylinderOut());
+        xboxLeftBumper = new JoystickButton(xboxController, 5);
+        xboxLeftBumper.whileHeld(new XboxWinchDown());
         xboxRightBumperIn = new JoystickButton(xboxController, 6);
-        xboxRightBumperIn.whileHeld(new CylinderIn());
-        xboxAButton = new JoystickButton(xboxController, 1);
-        xboxAButton.whileHeld(new winchMove());
+        xboxRightBumperIn.whileHeld(new XboxWinchUp());
+        xboxAButton = new JoystickButton(xboxController, 0);
+        xboxAButton.whileHeld(new CylinderOut());
         xboxYButton = new JoystickButton(xboxController, 4);
-        xboxYButton.whenPressed(new XboxWinchStop());
+        xboxYButton.whenPressed(new DriveStraight());
         
         /**joystick1 = new Joystick(1);
         
