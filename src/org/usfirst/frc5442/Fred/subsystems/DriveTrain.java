@@ -43,7 +43,8 @@ public class DriveTrain extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 	public void tankDrive(double speedLeft, double speedRight) {
-		robotDrive.tankDrive(speedLeft, speedRight);
+		robotDrive.tankDrive(speedLeft * .65, speedRight * .65);
+		//robotDrive.tankDrive(speedLeft, speedRight);
 		
 	}
 	public void driveStraight(double speed) {

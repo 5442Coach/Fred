@@ -72,7 +72,7 @@ public class OI {
         xboxLeftBumper.whileHeld(new XboxWinchDown());
         xboxRightBumperIn = new JoystickButton(xboxController, 6);
         xboxRightBumperIn.whileHeld(new XboxWinchUp());
-        xboxAButton = new JoystickButton(xboxController, 0);
+        xboxAButton = new JoystickButton(xboxController, 1);
         xboxAButton.whileHeld(new CylinderOut());
         xboxYButton = new JoystickButton(xboxController, 4);
         xboxYButton.whenPressed(new DriveStraight());

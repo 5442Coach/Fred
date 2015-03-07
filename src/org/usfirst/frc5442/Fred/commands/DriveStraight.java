@@ -22,19 +22,10 @@ import org.usfirst.frc5442.Fred.RobotMap;
 *
 */
 public class  DriveStraight extends Command {
-	PIDController leftMotor3 = new PIDController(0.1, 0.001, 0.0, RobotMap.EncoderLeft, RobotMap.driveTrainTalonController3);
-	PIDController leftMotor1 = new PIDController(0.1, 0.001, 0.0, RobotMap.EncoderLeft, RobotMap.driveTrainTalonController1);
-	PIDController rightMotor4 = new PIDController(0.1, 0.001, 0.0, RobotMap.EncoderRight, RobotMap.driveTrainTalonController4);
-	PIDController rightMotor2 = new PIDController(0.1, 0.001, 0.0, RobotMap.EncoderRight, RobotMap.driveTrainTalonController2);
-	
 
 	public DriveStraight() {
      // Use requires() here to declare subsystem dependencies
      // eg. requires(chassis);
-
-		
-	 
-
 		requires(Robot.driveTrain);
  	}
 
@@ -48,9 +39,10 @@ public class  DriveStraight extends Command {
  		 //Robot.driveTrain.driveStraight(OI.joystick1.getRawAxis(3));
     	while (abs(Robot.encoders.encoderLeft.getDistance()) < 5)
     	{
-    		Robot.driveTrain.driveStraight(.6);
+    		Robot.driveTrain.driveStraight(-.6);
 
     	}
+    	Robot.driveTrain.driveStraight(0);
 
  	 
  	}
@@ -63,13 +55,14 @@ public class  DriveStraight extends Command {
  	// Called once after isFinished returns true
  	protected void end() {
  		Robot.driveTrain.driveStraight(0.0);
+ 		Robot.encoders.encoderLeft.reset();
  	}
 
  	// Called when another command which requires one or more of the same
  	// subsystems is scheduled to run
  	protected void interrupted() {
-
  		Robot.driveTrain.driveStraight(0.0);
+ 		Robot.encoders.encoderLeft.reset();
  	}
  	
     private double abs(double distance) {

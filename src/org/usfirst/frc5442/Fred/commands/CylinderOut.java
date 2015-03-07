@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Command;
  * need to execute or until another command which requires one or more of the 
  * same subsystems is scheduled to run.
  * 
- * @author Temporo Materia Oscura
  */
 public class  CylinderOut extends Command {
 
