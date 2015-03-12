@@ -15,32 +15,39 @@ import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+import org.usfirst.frc5442.Fred.OI;
 import org.usfirst.frc5442.Fred.Robot;
+import org.usfirst.frc5442.Fred.RobotMap;
 
 /**
  *
  */
 //@SuppressWarnings("unused")
-public class  DriveIntoAutoZone extends CommandGroup {
+public class  DriveIntoAutoZone extends Command {
 	
 	//PIDController driveTo = new PIDController(0.1,0.001, Robot.Encoder.encoderLeft, Robot.DriveTrain.robotDrive);
 
     public DriveIntoAutoZone() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	addSequential(new DriveStraight());
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.encoders.encoderLeft.reset();
+    	Robot.encoders.encoderLeft.reset();
+    	RobotMap.imu.zeroYaw();
     	//driveTo.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//distance(in)/12.56/1.5
-    	
+    	while (Robot.encoders.encoderRight.getDistance() < 11.5)
+    	{
+    		Robot.navXBoard.setSetpoint(0);
+    		//Robot.driveTrain.tankDrive(-1, .974 * -1);
+    	}
     	
     	
     }

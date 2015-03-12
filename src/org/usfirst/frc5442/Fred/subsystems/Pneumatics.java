@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 //@SuppressWarnings("unused")
 public class Pneumatics extends Subsystem {
-    Compressor compressor = RobotMap.pneumaticsCompressor;
+    private Compressor compressor = RobotMap.pneumaticsCompressor;
 
     
     // Put methods for controlling this subsystem

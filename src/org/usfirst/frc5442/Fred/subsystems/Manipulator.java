@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Manipulator extends Subsystem {
 
-    DoubleSolenoid cylinder = RobotMap.manipulatorCylinder;
+    private DoubleSolenoid cylinder = RobotMap.manipulatorCylinder;
 
     public void initDefaultCommand() {
-    	setDefaultCommand(new CylinderIn());
+    	//setDefaultCommand(new CylinderIn());
 
     }
     

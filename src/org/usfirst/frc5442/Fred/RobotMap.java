@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj.PIDSource.PIDSourceParameter;
 import edu.wpi.first.wpilibj.hal.CanTalonSRX;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import com.kauailabs.navx_mxp.AHRS;
+
 
 import java.util.Vector;
 
@@ -32,13 +34,16 @@ public class RobotMap {
     public static SpeedController driveTrainTalonController1;
     public static SpeedController driveTrainTalonController2;
     public static SpeedController driveTrainTalonController3;
-    public 	static SpeedController driveTrainTalonController4;
+    public static SpeedController driveTrainTalonController4;
+    public static SerialPort navXBoard;
     public static CANTalon m_winchController;
     public static RobotDrive driveTrainRobotDrive;
     public static Compressor pneumaticsCompressor;
     public static DoubleSolenoid manipulatorCylinder;
     public static Encoder EncoderLeft;
     public static Encoder EncoderRight;
+    public static Potentiometer winchPot;
+    public static AHRS imu;
 
     public static void init() {
         driveTrainTalonController1 = new Talon(1);
@@ -64,6 +69,13 @@ public class RobotMap {
         m_winchController = new CANTalon(1);
         m_winchController.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
         
+        navXBoard = new SerialPort(57600,SerialPort.Port.kMXP);
+        byte update_rate_hz = 50;
+        imu = new AHRS(navXBoard,update_rate_hz);
+        
+        winchPot = new AnalogPotentiometer(0, 360, 30);
+        //AnalogInput ai = new AnalogInput(1);
+        //pot = new AnalogPotentiometer(ai, 360, 30);
 
         pneumaticsCompressor = new Compressor(0);
         

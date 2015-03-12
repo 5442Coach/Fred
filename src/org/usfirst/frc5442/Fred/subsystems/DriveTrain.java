@@ -23,11 +23,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	SpeedController talonController1 = RobotMap.driveTrainTalonController1;
-    SpeedController talonController2 = RobotMap.driveTrainTalonController2;
-    SpeedController talonController3 = RobotMap.driveTrainTalonController3;
-    SpeedController talonController4 = RobotMap.driveTrainTalonController4;
-    RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
+	private SpeedController talonController1 = RobotMap.driveTrainTalonController1;
+	private SpeedController talonController2 = RobotMap.driveTrainTalonController2;
+	private SpeedController talonController3 = RobotMap.driveTrainTalonController3;
+	private SpeedController talonController4 = RobotMap.driveTrainTalonController4;
+	private RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
 
     
     // Put methods for controlling this subsystem

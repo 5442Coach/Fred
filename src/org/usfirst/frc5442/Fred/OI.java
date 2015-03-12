@@ -75,7 +75,7 @@ public class OI {
         xboxAButton = new JoystickButton(xboxController, 1);
         xboxAButton.whileHeld(new CylinderOut());
         xboxYButton = new JoystickButton(xboxController, 4);
-        xboxYButton.whenPressed(new DriveStraight());
+        xboxYButton.whileHeld(new CylinderIn());
         
         /**joystick1 = new Joystick(1);
         

@@ -14,12 +14,16 @@ package org.usfirst.frc5442.Fred;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc5442.Fred.commands.*;
 import org.usfirst.frc5442.Fred.subsystems.*;
+
+import com.kauailabs.nav6.frc.IMU;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -38,6 +42,8 @@ public class Robot extends IterativeRobot {
     public static Manipulator manipulator;
     public static Encoder encoders;
     public static Winch winch;
+    public static NavXBoard navXBoard;
+    boolean first_iteration;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -51,6 +57,9 @@ public class Robot extends IterativeRobot {
         manipulator = new Manipulator();
         encoders = new Encoder();
         winch = new Winch();
+        navXBoard = new NavXBoard();
+        
+
         /**CameraServer server;
         
         server = CameraServer.getInstance();
@@ -94,6 +103,8 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
     	Robot.encoders.encoderLeft.reset();
+    	RobotMap.navXBoard.reset();
+    	RobotMap.imu.zeroYaw();
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
@@ -106,6 +117,37 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        boolean is_calibrating = RobotMap.imu.isCalibrating();
+        if ( first_iteration && !is_calibrating ) {
+            Timer.delay( 0.3 );
+            RobotMap.imu.zeroYaw();
+            first_iteration = false;
+        }
+        SmartDashboard.putBoolean(  "IMU_Connected",        RobotMap.imu.isConnected());
+        SmartDashboard.putBoolean(  "IMU_IsCalibrating",    RobotMap.imu.isCalibrating());
+        SmartDashboard.putNumber(   "IMU_Yaw",              RobotMap.imu.getYaw());
+        SmartDashboard.putNumber(   "IMU_Pitch",            RobotMap.imu.getPitch());
+        SmartDashboard.putNumber(   "IMU_Roll",             RobotMap.imu.getRoll());
+        SmartDashboard.putNumber(   "IMU_CompassHeading",   RobotMap.imu.getCompassHeading());
+        SmartDashboard.putNumber(   "IMU_Update_Count",     RobotMap.imu.getUpdateCount());
+        SmartDashboard.putNumber(   "IMU_Byte_Count",       RobotMap.imu.getByteCount());
+
+        // If you are using the IMUAdvanced class, you can also access the following
+        // additional functions, at the expense of some extra processing
+        // that occurs on the CRio processor
+       
+        SmartDashboard.putNumber(   "IMU_Accel_X",          RobotMap.imu.getWorldLinearAccelX());
+        SmartDashboard.putNumber(   "IMU_Accel_Y",          RobotMap.imu.getWorldLinearAccelY());
+        SmartDashboard.putBoolean(  "IMU_IsMoving",         RobotMap.imu.isMoving());
+        SmartDashboard.putNumber(   "IMU_Temp_C",           RobotMap.imu.getTempC());
+       
+        SmartDashboard.putNumber(   "Velocity_X",           RobotMap.imu.getVelocityX() );
+        SmartDashboard.putNumber(   "Velocity_Y",           RobotMap.imu.getVelocityY() );
+        SmartDashboard.putNumber(   "Displacement_X",       RobotMap.imu.getDisplacementX() );
+        SmartDashboard.putNumber(   "Displacement_Y",       RobotMap.imu.getDisplacementY() );
+
+
+
         //System.out.println("Winch Current: " + RobotMap.m_winchController.getOutputCurrent());
         //System.out.println("Winch Value: " + CANTalon.FeedbackDevice.AnalogPot.value);
         //System.out.println("Pot Value: " + RobotMap.m_winchController.getPosition());

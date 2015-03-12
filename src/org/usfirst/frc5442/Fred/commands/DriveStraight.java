@@ -14,6 +14,8 @@ package org.usfirst.frc5442.Fred.commands;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc5442.Fred.OI;
 import org.usfirst.frc5442.Fred.Robot;
 import org.usfirst.frc5442.Fred.RobotMap;
 
@@ -32,17 +34,13 @@ public class  DriveStraight extends Command {
  	// Called just before this Command runs the first time
  	protected void initialize() {
  		Robot.encoders.encoderLeft.reset();
+ 		Robot.encoders.encoderRight.reset();
  	}
 
  	// Called repeatedly when this Command is scheduled to run
  	protected void execute() {
  		 //Robot.driveTrain.driveStraight(OI.joystick1.getRawAxis(3));
-    	while (abs(Robot.encoders.encoderLeft.getDistance()) < 5)
-    	{
-    		Robot.driveTrain.driveStraight(-.6);
-
-    	}
-    	Robot.driveTrain.driveStraight(0);
+ 		Robot.driveTrain.tankDrive((-1 *(OI.xboxController.getRawAxis(3))), .974 * (-1 * (OI.xboxController.getRawAxis(3))));
 
  	 
  	}
@@ -54,13 +52,19 @@ public class  DriveStraight extends Command {
 
  	// Called once after isFinished returns true
  	protected void end() {
+ 		System.out.println("Left Encoder: " + Robot.encoders.encoderLeft.getDistance());
+ 		System.out.println("Right Encoder: " + Robot.encoders.encoderRight.getDistance());
  		Robot.driveTrain.driveStraight(0.0);
  		Robot.encoders.encoderLeft.reset();
+ 		Robot.encoders.encoderRight.reset();
+ 		
  	}
 
  	// Called when another command which requires one or more of the same
  	// subsystems is scheduled to run
  	protected void interrupted() {
+ 		System.out.println("Left Encoder: " + Robot.encoders.encoderLeft.getDistance());
+ 		System.out.println("Right Encoder: " + Robot.encoders.encoderRight.getDistance());
  		Robot.driveTrain.driveStraight(0.0);
  		Robot.encoders.encoderLeft.reset();
  	}
