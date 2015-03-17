@@ -11,6 +11,7 @@
 
 package org.usfirst.frc5442.Fred.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -37,16 +38,17 @@ public class  DriveIntoAutoZone extends Command {
     	Robot.encoders.encoderLeft.reset();
     	Robot.encoders.encoderLeft.reset();
     	RobotMap.imu.zeroYaw();
+    	Robot.manipulator.cylinder(DoubleSolenoid.Value.kForward);
     	//driveTo.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//distance(in)/12.56/1.5
-    	while (Robot.encoders.encoderRight.getDistance() < 11.5)
+    	while (Robot.encoders.encoderRight.getDistance() < 7.8)
     	{
     		Robot.navXBoard.setSetpoint(0);
-    		//Robot.driveTrain.tankDrive(-1, .974 * -1);
+    		Robot.driveTrain.tankDrive(-1, .974 * -1);
     	}
     	
     	
@@ -61,11 +63,13 @@ public class  DriveIntoAutoZone extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.manipulator.cylinder(DoubleSolenoid.Value.kReverse);
     	Robot.driveTrain.driveStraight(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.driveTrain.driveStraight(0);
     }
 }

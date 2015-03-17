@@ -62,6 +62,8 @@ public class OI {
     public JoystickButton xboxAButton;
     public static Joystick xboxController;
     public JoystickButton xboxYButton;
+    public JoystickButton xboxLeftStick;
+    public JoystickButton xboxXButton;
 
     public OI() {
 
@@ -69,14 +71,18 @@ public class OI {
         xboxController = new Joystick(0);
         
         xboxLeftBumper = new JoystickButton(xboxController, 5);
-        xboxLeftBumper.whileHeld(new XboxWinchDown());
+        //xboxLeftBumper.whileHeld(new XboxWinchUp());
+        xboxLeftBumper.whenPressed(new LedLightsXbox());
         xboxRightBumperIn = new JoystickButton(xboxController, 6);
-        xboxRightBumperIn.whileHeld(new XboxWinchUp());
+        xboxRightBumperIn.whileHeld(new TurboMode());
         xboxAButton = new JoystickButton(xboxController, 1);
         xboxAButton.whileHeld(new CylinderOut());
         xboxYButton = new JoystickButton(xboxController, 4);
         xboxYButton.whileHeld(new CylinderIn());
-        
+        xboxLeftStick = new JoystickButton(xboxController, 7);
+        //xboxLeftStick.whileHeld(new TurboMode());
+        xboxXButton = new JoystickButton(xboxController, 3);
+        xboxXButton.whenPressed(new LedLightsOff());
         /**joystick1 = new Joystick(1);
         
         joystick1TriggerIn = new JoystickButton(joystick1, 1);

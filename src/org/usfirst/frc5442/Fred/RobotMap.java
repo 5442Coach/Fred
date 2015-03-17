@@ -44,6 +44,7 @@ public class RobotMap {
     public static Encoder EncoderRight;
     public static Potentiometer winchPot;
     public static AHRS imu;
+    public static Solenoid ledlights;
 
     public static void init() {
         driveTrainTalonController1 = new Talon(1);
@@ -81,6 +82,7 @@ public class RobotMap {
         
         manipulatorCylinder = new DoubleSolenoid(0, 0, 1);      
         LiveWindow.addActuator("Manipulator", "Cylinder", manipulatorCylinder);
+        ledlights = new Solenoid(2);
         
         EncoderLeft = new Encoder(1, 2, false, EncodingType.k4X);
         LiveWindow.addSensor("Encoders", "Quadrature Encoder Left", EncoderLeft);

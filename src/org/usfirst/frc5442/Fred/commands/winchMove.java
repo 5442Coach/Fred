@@ -26,13 +26,13 @@ public class winchMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while (OI.xboxController.getRawAxis(2) > .1) {
-    		Robot.winch.move(OI.xboxController.getRawAxis(4));
+    	while (OI.xboxController.getRawAxis(2) > 0) {
+    		Robot.winch.move(OI.xboxController.getRawAxis(2) * -1);
     	}
-    	while (OI.xboxController.getRawAxis(3) > .1) {
-    		Robot.winch.move(OI.xboxController.getRawAxis(3) * -1);
+    	while (OI.xboxController.getRawAxis(3) > 0) {
+    		Robot.winch.move(OI.xboxController.getRawAxis(3));
     	}
-    	Robot.winch.move(0);
+    	Robot.winch.move(.1);
     	//System.out.println("Pot: " + CANTalon.FeedbackDevice.AnalogPot.value);
     }
 

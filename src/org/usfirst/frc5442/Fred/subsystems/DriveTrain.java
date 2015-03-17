@@ -47,6 +47,9 @@ public class DriveTrain extends Subsystem {
 		//robotDrive.tankDrive(speedLeft, speedRight);
 		
 	}
+	public void turboMode(double speedLeft, double speedRight) {
+		robotDrive.tankDrive(speedLeft, speedRight);
+	}
 	public void driveStraight(double speed) {
 		robotDrive.tankDrive(speed, speed);
 	}

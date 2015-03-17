@@ -3,6 +3,8 @@ package org.usfirst.frc5442.Fred.commands;
 import org.usfirst.frc5442.Fred.Robot;
 import org.usfirst.frc5442.Fred.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 public class DrivePickupBinAuto {
 	
 	public DrivePickupBinAuto() {
@@ -16,14 +18,20 @@ public class DrivePickupBinAuto {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.encoders.encoderLeft.reset();
+    	Robot.encoders.encoderLeft.reset();
+    	RobotMap.imu.zeroYaw();
+		Robot.manipulator.cylinder(DoubleSolenoid.Value.kForward);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	while (RobotMap.EncoderLeft.getDistance() < 2)
+    	while (RobotMap.EncoderLeft.getDistance() < 7.8)
     	{
-    		Robot.driveTrain.driveStraight(.5);
+    		Robot.navXBoard.setSetpoint(0);
+    		Robot.driveTrain.tankDrive(-1, .974 * -1);
+
     	}
     	
     	

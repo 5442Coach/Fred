@@ -1,6 +1,9 @@
 package org.usfirst.frc5442.Fred.commands;
 
 import org.usfirst.frc5442.Fred.Robot;
+import org.usfirst.frc5442.Fred.RobotMap;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class DrivePickUpGarbageBinAuto {
 	
@@ -15,26 +18,28 @@ public class DrivePickUpGarbageBinAuto {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.encoders.encoderLeft.reset();
+    	Robot.encoders.encoderLeft.reset();
+    	RobotMap.imu.zeroYaw();
+		Robot.manipulator.cylinder(DoubleSolenoid.Value.kForward);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	while (Robot.encoders.encoderLeft.getDistance() < 2)
+    	while (Robot.encoders.encoderRight.getDistance() < 7.8)
     	{
-    		Robot.driveTrain.driveStraight(.5);
+    		Robot.navXBoard.setSetpoint(0);
+    		Robot.driveTrain.tankDrive(-1, .974 * -1);
     	}
-    	
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
     }
-
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.manipulator.cylinder(DoubleSolenoid.Value.kReverse);
     	Robot.driveTrain.driveStraight(0);
     }
 

@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc5442.Fred.commands.*;
@@ -43,7 +44,9 @@ public class Robot extends IterativeRobot {
     public static Encoder encoders;
     public static Winch winch;
     public static NavXBoard navXBoard;
+    public static Led Leds;
     boolean first_iteration;
+    //SendableChooser autonomousModes;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -58,13 +61,13 @@ public class Robot extends IterativeRobot {
         encoders = new Encoder();
         winch = new Winch();
         navXBoard = new NavXBoard();
-        
+        Leds = new Led();
 
-        /**CameraServer server;
+        CameraServer server;
         
         server = CameraServer.getInstance();
         server.setQuality(50);
-        server.startAutomaticCapture("cam0");**/
+        server.startAutomaticCapture("cam1");
         // OI must be constructed after subsystems. If the OI creates Commands 
         //(which it very likely will), subsystems are not guaranteed to be 
         // constructed yet. Thus, their requires() statements may grab null 
@@ -73,6 +76,11 @@ public class Robot extends IterativeRobot {
 
         // instantiate the command used for the autonomous period
         autonomousCommand = new DriveIntoAutoZone();
+        /*autonomousModes = new SendableChooser();
+        autonomousModes.addDefault("Push Tote", new DriveIntoAutoZone());
+        autonomousModes.addObject("Don't move", new AutoHoldStill());
+        SmartDashboard.putData("Autonomous Mode", autonomousModes);
+        */
     }
 
     /**
@@ -91,6 +99,7 @@ public class Robot extends IterativeRobot {
     	Robot.encoders.encoderLeft.reset();
     	Robot.encoders.encoderRight.reset();
         // schedule the autonomous command (example)
+    	//autonomousCommand = (Command) autonomousModes.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -145,8 +154,11 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber(   "Velocity_Y",           RobotMap.imu.getVelocityY() );
         SmartDashboard.putNumber(   "Displacement_X",       RobotMap.imu.getDisplacementX() );
         SmartDashboard.putNumber(   "Displacement_Y",       RobotMap.imu.getDisplacementY() );
-
-
+        //SmartDashboard.putNumber( "Pot420", RobotMap.winchPot.get());
+        SmartDashboard.putNumber("SRXVoltage", RobotMap.m_winchController.getOutputVoltage());
+        SmartDashboard.putNumber("SRXAnalogPos", RobotMap.m_winchController.getAnalogInRaw());
+        SmartDashboard.putNumber("SRXGet", RobotMap.m_winchController.get());
+        SmartDashboard.putNumber("SRXPos", RobotMap.m_winchController.getPosition());
 
         //System.out.println("Winch Current: " + RobotMap.m_winchController.getOutputCurrent());
         //System.out.println("Winch Value: " + CANTalon.FeedbackDevice.AnalogPot.value);
