@@ -21,7 +21,7 @@ public class DrivePickupBinAuto {
     	Robot.encoders.encoderLeft.reset();
     	Robot.encoders.encoderLeft.reset();
     	RobotMap.imu.zeroYaw();
-		Robot.manipulator.cylinder(DoubleSolenoid.Value.kForward);
+		Robot.manipulator.cylinder(DoubleSolenoid.Value.kReverse);
     }
 
     // Called repeatedly when this Command is scheduled to run

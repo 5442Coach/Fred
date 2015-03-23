@@ -11,61 +11,60 @@
 
 package org.usfirst.frc5442.Fred.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import org.usfirst.frc5442.Fred.OI;
 import org.usfirst.frc5442.Fred.Robot;
-import org.usfirst.frc5442.Fred.RobotMap;
 
-/**
- *
+/*
+ * *Command to move the drive train subsystem based on controller values. Command will run for the time
+ * need to execute or until another command which requires one or more of the 
+ * same subsystems is scheduled to run.
  */
-//@SuppressWarnings("unused")
-public class  AutoHoldStill extends Command {
-	
-	//PIDController driveTo = new PIDController(0.1,0.001, Robot.Encoder.encoderLeft, Robot.DriveTrain.robotDrive);
+public class  PrecisionMode extends Command {
 
-    public AutoHoldStill() {
+    public PrecisionMode() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+
+        requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.encoders.encoderLeft.reset();
-    	Robot.encoders.encoderLeft.reset();
-    	RobotMap.imu.zeroYaw();
-    	Robot.manipulator.cylinder(DoubleSolenoid.Value.kReverse);
-    	//driveTo.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//distance(in)/12.56/1.5
-    	Robot.driveTrain.driveStraight(0);
+    	Robot.driveTrain.precisionMode(OI.xboxController.getRawAxis(5), OI.xboxController.getRawAxis(1));
+    	//Robot.driveTrain.tankDrive(OI.joystick2.getY(), OI.joystick1.getY());
+    	//System.out.println(Robot.encoders.encoderRight.getDistance());
     	
+    	//*if(OI.joystickRight.getY()>0.1 || OI.joystickRight.getY()<-0.1)
+    	//{
+    		//Robot.driveTrain.tankDrive(OI.joystickRight.getY(), OI.joystickRight.getY());
+    	//} else if(OI.joystickRight.getZ()>0.1 || OI.joystickRight.getZ()<-0.1)
+    	//{
+    		//Robot.driveTrain.tankDrive(OI.joystickRight.getZ(), -1 * OI.joystickRight.getZ());
+    	//}
+    	
+    	
+    	//Robot.driveTrain.tankDrive(OI.xboxController.getRawAxis(5), OI.xboxController.getRawAxis(1));
+    	//Robot.driveTrain.tankDrive(OI.joystickRight.getY(), OI.joystickRight.getTwist());
     	
     }
 
-
-
-	// Make this return true when this Command no longer needs to run execute()
+    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.manipulator.cylinder(DoubleSolenoid.Value.kReverse);
-    	Robot.driveTrain.driveStraight(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.driveStraight(0);
     }
 }

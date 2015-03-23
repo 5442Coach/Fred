@@ -24,11 +24,11 @@ import org.usfirst.frc5442.Fred.RobotMap;
  *
  */
 //@SuppressWarnings("unused")
-public class  AutoHoldStill extends Command {
+public class  DriveIntoAutoZoneCustom extends Command {
 	
 	//PIDController driveTo = new PIDController(0.1,0.001, Robot.Encoder.encoderLeft, Robot.DriveTrain.robotDrive);
 
-    public AutoHoldStill() {
+    public DriveIntoAutoZoneCustom() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -45,9 +45,11 @@ public class  AutoHoldStill extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//distance(in)/12.56/1.5
-    	Robot.driveTrain.driveStraight(0);
-    	
-    	
+    	while (Robot.encoders.encoderRight.getDistance() < Robot.encoderDistance)
+    	{
+    		Robot.navXBoard.setSetpoint(0);
+    		Robot.driveTrain.tankDrive(-1, .974 * -1);
+    	}
     }
 
 

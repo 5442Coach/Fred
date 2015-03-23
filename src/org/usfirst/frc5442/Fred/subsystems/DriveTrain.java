@@ -63,6 +63,10 @@ public class DriveTrain extends Subsystem {
 		// TODO Auto-generated method stub
 		
 	}*/
+	public void precisionMode(double speedLeft, double speedRight) {
+		robotDrive.tankDrive(speedLeft * .5, speedRight * .5);
+		
+	}
 	
 }
 

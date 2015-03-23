@@ -13,6 +13,7 @@ package org.usfirst.frc5442.Fred.commands;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -24,11 +25,11 @@ import org.usfirst.frc5442.Fred.RobotMap;
  *
  */
 //@SuppressWarnings("unused")
-public class  AutoHoldStill extends Command {
+public class  PickupDriveBack extends CommandGroup {
 	
 	//PIDController driveTo = new PIDController(0.1,0.001, Robot.Encoder.encoderLeft, Robot.DriveTrain.robotDrive);
 
-    public AutoHoldStill() {
+    public PickupDriveBack() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -45,9 +46,21 @@ public class  AutoHoldStill extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//distance(in)/12.56/1.5
-    	Robot.driveTrain.driveStraight(0);
+    	Timer.delay(5);
+    	while (Robot.encoders.encoderLeft.getDistance() < -1)
+    	{
+    		Robot.driveTrain.tankDrive(-1, .974 * -1);
     	
-    	
+    	}
+    	Robot.manipulator.cylinder(DoubleSolenoid.Value.kReverse);
+    	Robot.winch.move(1);
+    	Timer.delay(2);
+    	Robot.winch.move(0);
+    	while (Robot.encoders.encoderRight.getDistance() < -7.8)
+    	{
+    		Robot.navXBoard.setSetpoint(0);
+    		Robot.driveTrain.tankDrive(-1, .974 * -1);
+    	}
     }
 
 

@@ -13,9 +13,7 @@ package org.usfirst.frc5442.Fred;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -47,8 +45,6 @@ public class Robot extends IterativeRobot {
     public static Winch winch;
     public static NavXBoard navXBoard;
     public static Led Leds;
-    public static Preferences prefs;
-    public static double encoderDistance;
     boolean first_iteration;
     SendableChooser autonomousModes;
 
@@ -67,11 +63,11 @@ public class Robot extends IterativeRobot {
         navXBoard = new NavXBoard();
         Leds = new Led();
 
-        //CameraServer server;
+        CameraServer server;
         
-        //server = CameraServer.getInstance();
-        //server.setQuality(50);
-        //server.startAutomaticCapture("cam2");
+        server = CameraServer.getInstance();
+        server.setQuality(50);
+        server.startAutomaticCapture("cam2");
         // OI must be constructed after subsystems. If the OI creates Commands 
         //(which it very likely will), subsystems are not guaranteed to be 
         // constructed yet. Thus, their requires() statements may grab null 
@@ -79,12 +75,11 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         // instantiate the command used for the autonomous period
-        autonomousCommand = new DriveIntoAutoZone();
+        //autonomousCommand = new DriveIntoAutoZone();
         autonomousModes = new SendableChooser();
         autonomousModes.addDefault("Push Tote", new DriveIntoAutoZone());
         autonomousModes.addObject("Don't move", new AutoHoldStill());
         autonomousModes.addObject("Pick up and Drive back", new PickupDriveBack());
-        autonomousModes.addObject("Custom Drive straight Distance", new DriveIntoAutoZoneCustom());
         SmartDashboard.putData("Autonomous Mode", autonomousModes);
         
     }
@@ -102,7 +97,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-    	//encoderDistance = prefs.getDouble("Drive distance", 7.6);
     	Robot.encoders.encoderLeft.reset();
     	Robot.encoders.encoderRight.reset();
         // schedule the autonomous command (example)
@@ -139,25 +133,6 @@ public class Robot extends IterativeRobot {
             RobotMap.imu.zeroYaw();
             first_iteration = false;
         }
-        
-        /*driveTrain.tankDrive(oi.xboxController.getRawAxis(5), oi.xboxController.getRawAxis(1));
-        
-        if(oi.xboxController.getRawAxis(2) > 0.1)
-        {
-        	winch.move(-1*oi.xboxController.getRawAxis(2));
-        }
-        else if(oi.xboxController.getRawAxis(3) > 0.1)
-        {
-        	winch.move(oi.xboxController.getRawAxis(3));
-        }
-        else
-        	winch.move(0.1);
-        
-        if(oi.xboxController.getRawButton(1))
-        	manipulator.cylinder(DoubleSolenoid.Value.kForward);
-        else if(oi.xboxController.getRawButton(3))
-        	manipulator.cylinder(DoubleSolenoid.Value.kReverse);
-        */
         /*
         SmartDashboard.putBoolean(  "IMU_Connected",        RobotMap.imu.isConnected());
         SmartDashboard.putBoolean(  "IMU_IsCalibrating",    RobotMap.imu.isCalibrating());

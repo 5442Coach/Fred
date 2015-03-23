@@ -38,14 +38,14 @@ public class  DriveIntoAutoZone extends Command {
     	Robot.encoders.encoderLeft.reset();
     	Robot.encoders.encoderLeft.reset();
     	RobotMap.imu.zeroYaw();
-    	Robot.manipulator.cylinder(DoubleSolenoid.Value.kForward);
+    	Robot.manipulator.cylinder(DoubleSolenoid.Value.kReverse);
     	//driveTo.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//distance(in)/12.56/1.5
-    	while (Robot.encoders.encoderRight.getDistance() < 7.8)
+    	while (Robot.encoders.encoderRight.getDistance() < 7.6)
     	{
     		Robot.navXBoard.setSetpoint(0);
     		Robot.driveTrain.tankDrive(-1, .974 * -1);
@@ -53,13 +53,10 @@ public class  DriveIntoAutoZone extends Command {
     	
     	
     }
-
-
-
 	// Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
-    }
+    } 
 
     // Called once after isFinished returns true
     protected void end() {
