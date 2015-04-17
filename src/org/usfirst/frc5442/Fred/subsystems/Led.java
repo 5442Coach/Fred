@@ -2,6 +2,7 @@ package org.usfirst.frc5442.Fred.subsystems;
 
 import org.usfirst.frc5442.Fred.RobotMap;
 import org.usfirst.frc5442.Fred.commands.LedLightsOff;
+import org.usfirst.frc5442.Fred.commands.LedLightsXbox;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -13,7 +14,7 @@ public class Led extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new LedLightsOff());
+		//setDefaultCommand(new LedLightsXbox());
 		// TODO Auto-generated method stub
 	
 	}

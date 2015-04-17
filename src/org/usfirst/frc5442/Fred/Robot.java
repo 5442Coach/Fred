@@ -44,6 +44,7 @@ public class Robot extends IterativeRobot {
     public static Pneumatics pneumatics;
     public static Manipulator manipulator;
     public static Encoder encoders;
+    public static RearHooks hooks;
     public static Winch winch;
     public static NavXBoard navXBoard;
     public static Led Leds;
@@ -66,12 +67,19 @@ public class Robot extends IterativeRobot {
         winch = new Winch();
         navXBoard = new NavXBoard();
         Leds = new Led();
+        hooks = new RearHooks();
 
-        //CameraServer server;
+        CameraServer server = null;
         
         //server = CameraServer.getInstance();
-        //server.setQuality(50);
-        //server.startAutomaticCapture("cam2");
+        if (CameraServer.getInstance() == null) {
+        	
+        } else {
+        	server = CameraServer.getInstance();
+        	server.setQuality(50);
+            server.startAutomaticCapture("cam2");
+        }
+        
         // OI must be constructed after subsystems. If the OI creates Commands 
         //(which it very likely will), subsystems are not guaranteed to be 
         // constructed yet. Thus, their requires() statements may grab null 
@@ -121,6 +129,7 @@ public class Robot extends IterativeRobot {
     	Robot.encoders.encoderLeft.reset();
     	RobotMap.navXBoard.reset();
     	RobotMap.imu.zeroYaw();
+    	RobotMap.ledlights.set(true);
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
@@ -140,22 +149,22 @@ public class Robot extends IterativeRobot {
             first_iteration = false;
         }
         
-        /*driveTrain.tankDrive(oi.xboxController.getRawAxis(5), oi.xboxController.getRawAxis(1));
-        
-        if(oi.xboxController.getRawAxis(2) > 0.1)
+        driveTrain.tankDrive(OI.xboxController.getRawAxis(5), OI.xboxController.getRawAxis(1));
+        RobotMap.ledlights.set(true);
+        if(OI.xboxController.getRawAxis(2) > 0.1)
         {
-        	winch.move(-1*oi.xboxController.getRawAxis(2));
+        	winch.move(-1*OI.xboxController.getRawAxis(2));
         }
-        else if(oi.xboxController.getRawAxis(3) > 0.1)
+        else if(OI.xboxController.getRawAxis(3) > 0.1)
         {
-        	winch.move(oi.xboxController.getRawAxis(3));
+        	winch.move(OI.xboxController.getRawAxis(3));
         }
         else
         	winch.move(0.1);
         
-        if(oi.xboxController.getRawButton(1))
+        /*if(OI.xboxController.getRawButton(1))
         	manipulator.cylinder(DoubleSolenoid.Value.kForward);
-        else if(oi.xboxController.getRawButton(3))
+        else if(OI.xboxController.getRawButton(3))
         	manipulator.cylinder(DoubleSolenoid.Value.kReverse);
         */
         /*

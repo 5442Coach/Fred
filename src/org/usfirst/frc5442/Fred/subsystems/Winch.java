@@ -22,7 +22,7 @@ public class Winch extends Subsystem {
 		*/
 	}
 	public void initDefaultCommand() {
-		setDefaultCommand(new winchMove());
+		//setDefaultCommand(new winchMove());
 	}
 	//Move the winch based on the value passed to it in commands    	
 	public void move (double speed)

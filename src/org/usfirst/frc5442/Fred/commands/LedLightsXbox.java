@@ -7,6 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class LedLightsXbox extends Command {
 	
+	public LedLightsXbox() {
+		requires(Robot.Leds);
+	}
 
 	@Override
 	protected void initialize() {
@@ -16,7 +19,7 @@ public class LedLightsXbox extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.Leds.ledOn();
+		//Robot.Leds.ledOn();
 		RobotMap.ledlights.set(true);
 	}
 
