@@ -76,7 +76,7 @@ public class Robot extends IterativeRobot {
         	
         } else {
         	server = CameraServer.getInstance();
-        	server.setQuality(50);
+        	server.setQuality(100);
             server.startAutomaticCapture("cam2");
         }
         
@@ -90,6 +90,7 @@ public class Robot extends IterativeRobot {
         autonomousCommand = new DriveIntoAutoZone();
         autonomousModes = new SendableChooser();
         autonomousModes.addDefault("Push Tote", new DriveIntoAutoZone());
+        autonomousModes.addObject("AutoWithHooks", new AutoPickUpBinsWithHooks());
         autonomousModes.addObject("Don't move", new AutoHoldStill());
         autonomousModes.addObject("Pick up and Drive back", new PickupDriveBack());
         autonomousModes.addObject("Custom Drive straight Distance", new DriveIntoAutoZoneCustom());
@@ -129,7 +130,8 @@ public class Robot extends IterativeRobot {
     	Robot.encoders.encoderLeft.reset();
     	RobotMap.navXBoard.reset();
     	RobotMap.imu.zeroYaw();
-    	RobotMap.ledlights.set(true);
+    	RobotMap.LedLights2.set(true);
+    	RobotMap.ledlights.set(DoubleSolenoid.Value.kForward);
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
@@ -148,9 +150,8 @@ public class Robot extends IterativeRobot {
             RobotMap.imu.zeroYaw();
             first_iteration = false;
         }
-        
         driveTrain.tankDrive(OI.xboxController.getRawAxis(5), OI.xboxController.getRawAxis(1));
-        RobotMap.ledlights.set(true);
+        //RobotMap.LedLights2.set(true);
         if(OI.xboxController.getRawAxis(2) > 0.1)
         {
         	winch.move(-1*OI.xboxController.getRawAxis(2));

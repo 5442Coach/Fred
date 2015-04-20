@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Led extends Subsystem {
 	
-	private Solenoid LED = RobotMap.ledlights;
+	private Solenoid LED = RobotMap.LedLights2;
 
 	@Override
 	protected void initDefaultCommand() {

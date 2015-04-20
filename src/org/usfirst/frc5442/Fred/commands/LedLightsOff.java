@@ -20,7 +20,7 @@ public class LedLightsOff extends Command {
 	@Override
 	protected void execute() {
 		Robot.Leds.ledOff();
-		RobotMap.ledlights.set(false);
+		RobotMap.LedLights2.set(false);
 		
 	}
 
